@@ -15,14 +15,15 @@ Conversion factors and categorical variables for Brey's ANN model.
 \itemize{
 \item \code{Group} The graphical.
 \item \code{Taxon} Taxa in the recorded form.
-\item \code{Conversion_factors} The type of conversion factors.
-\item \code{N} Number of data.
-\item \code{Mean} The mean value of conversion factors.
-\item \code{S.D.} The standard deviation of the conversion factors.
-\item \code{Median} The median of the conversion factors.
-\item \code{Accquired_taxonomic_level} The taxonomic level of where the conversion factors were obtained.
-\item \code{Additional_diet} The additional diet feature if the taxonomic level was set to the highest level.
-\item \code{Comment} Comment about the whole row.
+\item \code{ConFac_j2mgwm} The conversion factors from mg WM to Joule.
+\item \code{ConFac_j2mgc} The conversion factors from mg C to Joule.
+\item \code{Taxonomic categories} Mollusca, Annelida, Crustacea, Echinodermata, Insecta.
+\item \code{Lifestyle categories} Infauna, Sessile, Crawler, FacultativeSwimmer.
+\item \code{Diet categories} Herbivore, Omnivore, Carnivore.
+\item \code{Habitat categories} Lake, River, Marine, Subtidal.
+\item \code{Exploited} The presence of exploitation.
+\item \code{Comment} Comments on the decisions.
+\item \code{Reference} Reference of the comments.
 }
 }
 \keyword{datasets}

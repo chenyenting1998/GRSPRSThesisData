@@ -2,19 +2,19 @@
 # Chen, Yen-Ting
 
 # Comment:
-# The file `env.xlsx` joins the two file `ctd_bw.xlsx` and `sed.xlsx`. The depth of each station 
+# The file `env.xlsx` joins the two file `ctd_bw.xlsx` and `sed.xlsx`. The depth of each station
 # is then added to the file.
 
 # library
-library(dplyr)
-library(tidyr)
-library(readxl)
-library(writexl)
-library(ggplot2)
-
+pacman::p_load(readxl,
+               writexl,
+               dplyr,
+               tidyr,
+               usethat,
+               GRSPRSThesisData)
 # read env
-bw <- read_xlsx("data/ctd_bw.xlsx")
-sed <- read_xlsx("data/sed.xlsx")
+bw <- read_xlsx("xlsx/ctd_bw.xlsx")
+sed <- read_xlsx("xlsx/sed.xlsx")
 
 # env =  sed + bw
 env <-
@@ -30,7 +30,7 @@ env$Location <-
 
 # relocate `Location`
 env <-
-  env %>% 
+  env %>%
   relocate(Location, .after = Cruise)
 
 # remove deep sea stations
@@ -40,16 +40,18 @@ env <-
 #  filter(!(Station %in% c("GC1", "GS1")))
 
 # add depth
-depth <- read_xlsx("data/depth.xlsx")
+depth <- read_xlsx("xlsx/depth.xlsx")
 env <- left_join(depth, env, by = c("Cruise", "Station"))
 
 # relocate depth
 env <-
-  env %>% 
-  relocate(Depth, .after = pressure) 
+  env %>%
+  relocate(Depth, .after = pressure)
 
-# remove pressure
+# remove redundant variables
 env$pressure <- NULL
+env$WW <- NULL
+env$DW <- NULL
 
 # write env.xlsx
-write_xlsx(env, "data/env.xlsx")
+use_data(env, overwrite = T)

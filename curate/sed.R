@@ -3,17 +3,18 @@
 # curate env
 
 # Comment:
-# The `Section` column was removed. Data type by column was transferred. 
+# The `Section` column was removed. Data type by column was transferred.
 
-library(readxl)
-library(writexl)
-library(dplyr)
-library(tidyr)
-library(lubridate)
+pacman::p_load(readxl,
+               writexl,
+               dplyr,
+               tidyr,
+               usethat,
+               GRSPRSThesisData)
 
-sed_dir <- 
-  dir(path = "data-raw/sediment",
-      pattern = ".xlsx",
+sed_dir <-
+  dir(path = "xlsx",
+      pattern = "Sediment",
       full.names = T)
 
 sed <- read_xlsx(sed_dir,
@@ -24,4 +25,4 @@ sed$Deployment <- NULL
 sed$Section <- NULL
 
 # write xlsx
-write_xlsx(sed, path = "data/sed.xlsx")
+write_xlsx(sed, path = "xlsx/sed.xlsx")

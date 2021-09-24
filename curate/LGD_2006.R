@@ -7,22 +7,20 @@
 # The WM of each individuals were by multipling the volume with a specific weight of 1.13,
 # following the assumption of (inset references here).
 
-
-
 pacman::p_load(readxl,
                writexl,
                dplyr,
                tidyr,
-               easypipe,
-               ecomaestro)
+               usethat,
+               GRSPRSThesisData)
 
 #view <- function(df) View(df)
 
 # read LGD_2006 -----------------------------------------------------------
-macro <- read_xlsx("data-raw/macrofauna/LGD-2006_macro_size_final.xlsx")
+macro <- read_xlsx("xlsx/LGD_2006_macro_size_final.xlsx")
 
 polychaete <-
-  read_xlsx("data-raw/macrofauna/LGD_2006 polychaeta size.xlsx",
+  read_xlsx("xlsx/LGD_2006_polychaeta_size.xlsx",
             col_types = c(rep("guess", 7),
                           rep("text", 2),
                           rep("guess", 8))) %>%
@@ -36,7 +34,7 @@ grouping_vairables <- c("Cruise","Habitat","Station","Deployment","Tube","Sectio
 macro_size <-
   macro %>%
   full_join(polychaete) %>%
-  assign_method() %>%
+  assign_method(method_file = biovolume_methods) %>%
   calculate_biovolume() %>%
   define_ophiuroid_size(protocol_ophiuroid = "all_arms",
                         grouping_variables = grouping_vairables) %>%
@@ -51,10 +49,6 @@ macro_size <-
   macro_size %>%
   filter(!(Taxon == "Hydrozoa" & Note == "Stalk"))
 
-# write xlsx --------------------------------------------------------------
-# write: LGD_2006_macrofauna_size.xlsx
-macro_size %>%
-  write_xlsx("data/LGD_2006_macrofauna_size.xlsx")
-
-# write: LGD_2006_macrofauna_count.xlsx
-# write_xlsx(macro_abu, "data/LGD_2006_macrofauna_count.xlsx")
+# write data --------------------------------------------------------------
+LGD_2006 <- macro_size
+use_data(LGD_2006, overwrite = T)
