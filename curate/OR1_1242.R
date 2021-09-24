@@ -10,7 +10,7 @@ pacman::p_load(readxl,
                writexl,
                dplyr,
                tidyr,
-               usethat,
+               usethis,
                GRSPRSThesisData)
 # source("source/ggplot_theme_func.R")
 # theme_set(large)
