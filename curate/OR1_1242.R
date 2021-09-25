@@ -10,7 +10,7 @@ pacman::p_load(readxl,
                writexl,
                dplyr,
                tidyr,
-               usethis,
+               devtools,
                GRSPRSThesisData)
 # source("source/ggplot_theme_func.R")
 # theme_set(large)
@@ -49,4 +49,7 @@ macro_size <-
 
 # write: OR1_1242_macrofauna_size
 OR1_1242<- macro_size
-use_data(OR1_1242, overwrite = T)
+OR1_1242$Location <- "GRS"
+size_OR1_1242 <- OR1_1242[, c("Cruise", "Habitat", "Location", "Station","Deployment", "Tube", "Section", "Taxon","Family", "Genus", "Condition", "L","W", "a", "b", "Size","Note", "Type", "C", "WM")]
+
+use_data(size_OR1_1242, overwrite = T)

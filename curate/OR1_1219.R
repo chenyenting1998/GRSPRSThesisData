@@ -3,7 +3,7 @@ pacman::p_load(readxl,
                writexl,
                dplyr,
                tidyr,
-               usethis,
+               devtools,
                GRSPRSThesisData)
 
 # read OR1_1219 -----------------------------------------------------------
@@ -58,4 +58,6 @@ macro_size <-
 
 # write: OR1_1219_macrofauna_size.xlsx
 OR1_1219 <- macro_size
-use_data(OR1_1219, overwrite = T)
+OR1_1219$Location <- "GRS"
+size_OR1_1219 <- OR1_1219[, c("Cruise", "Habitat", "Location", "Station","Deployment", "Tube", "Section", "Taxon","Family", "Genus", "Condition", "L","W", "a", "b", "Size","Note", "Type", "C", "WM")]
+use_data(size_OR1_1219, overwrite = T)

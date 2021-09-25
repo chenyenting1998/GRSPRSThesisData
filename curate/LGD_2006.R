@@ -11,7 +11,7 @@ pacman::p_load(readxl,
                writexl,
                dplyr,
                tidyr,
-               usethat,
+               devtools,
                GRSPRSThesisData)
 
 #view <- function(df) View(df)
@@ -51,4 +51,7 @@ macro_size <-
 
 # write data --------------------------------------------------------------
 LGD_2006 <- macro_size
-use_data(LGD_2006, overwrite = T)
+LGD_2006$Location <- "PRS"
+
+size_LGD_2006 <- LGD_2006[, c("Cruise", "Habitat", "Location", "Station","Deployment", "Tube", "Section", "Taxon","Family", "Genus", "Condition", "L","W", "a", "b", "Size","Note", "Type", "C", "WM")]
+use_data(size_LGD_2006, overwrite = T)
