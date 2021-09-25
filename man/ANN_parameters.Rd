@@ -3,7 +3,7 @@
 \docType{data}
 \name{ANN_parameters}
 \alias{ANN_parameters}
-\title{Parameters for Brey's ANN model}
+\title{ANN parameters for Brey's 2010 model}
 \format{
 An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 36 rows and 23 columns.
 }
@@ -11,19 +11,37 @@ An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) w
 ANN_parameters
 }
 \description{
-Conversion factors and categorical variables for Brey's ANN model.
-\itemize{
-\item \code{Group} The graphical.
-\item \code{Taxon} Taxa in the recorded form.
-\item \code{ConFac_j2mgwm} The conversion factors from mg WM to Joule.
-\item \code{ConFac_j2mgc} The conversion factors from mg C to Joule.
-\item \code{Taxonomic categories} Mollusca, Annelida, Crustacea, Echinodermata, Insecta.
-\item \code{Lifestyle categories} Infauna, Sessile, Crawler, FacultativeSwimmer.
-\item \code{Diet categories} Herbivore, Omnivore, Carnivore.
-\item \code{Habitat categories} Lake, River, Marine, Subtidal.
-\item \code{Exploited} The presence of exploitation.
-\item \code{Comment} Comments on the decisions.
-\item \code{Reference} Reference of the comments.
+ANN parameters for Brey's 2010 model
 }
+\details{
+The condition and unit of each column were listed below.
+\itemize{
+\item{Group} Grouped taxon for simple visualization
+\item{Taxon} Recorded grouping taxa of the specimen
+\item{ConFac_j2mgwm} The mean value of mgWM-to-J Conversion factors collected from Brey et al., 2010.
+\item{ConFac_j2mgc} The mean value of mgWM-to-J Conversion factors collected from Brey et al., 2010.
+\item{Mollusca} Taxonomic categorical varaibles.
+\item{Annelida} Taxonomic categorical varaibles.
+\item{Crustacea} Taxonomic categorical varaibles.
+\item{Echinodermata} Taxonomic categorical varaibles.
+\item{Insecta} Taxonomic categorical varaibles.
+\item{Infauna} Lifestyle categorical varaibles.
+\item{Sessile} Lifestyle categorical varaibles.
+\item{Crawler} Lifestyle categorical varaibles.
+\item{FacultativeSwimmer} Lifestyle categorical varaibles.
+\item{Herbivore} Diet categorical varaibles.
+\item{Omnivore} Diet categorical varaibles.
+\item{Carnivore} Diet categorical varaibles.
+\item{Lake} Habitat categorical varaibles.
+\item{River} Habitat categorical varaibles.
+\item{Marine} Habitat categorical varaibles.
+\item{Subtidal} Habitat categorical varaibles.
+\item{Exploited} Categorical varaible for exploitation.
+\item{Comment} Personal comments.
+\item{Reference}
+}
+}
+\author{
+Yen-Ting Chen \email{r08241220@ntu.edu.tw}
 }
 \keyword{datasets}
