@@ -1,5 +1,5 @@
 #' @title Coarse taxa
-#' @description This data documents the repective phylum and groupings for the sake of concise graphs
+#' @description This data documents the respective phylum and groupings for the sake of concise graphs
 #'
 #'  \itemize{
 #'     \item \code{Taxon} Taxa in the recorded form.
