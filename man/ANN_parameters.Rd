@@ -5,7 +5,7 @@
 \alias{ANN_parameters}
 \title{ANN parameters for Brey's 2010 model}
 \format{
-An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 36 rows and 23 columns.
+An object of class \code{data.frame} with 36 rows and 23 columns.
 }
 \usage{
 ANN_parameters

@@ -37,6 +37,7 @@ ANN_parameters$ConFac_j2mgc  <- mgc[match(ANN_parameters$Taxon, mgc$Taxon), "Mea
 # match is confusing as fuck
 # let match(a, b)
 # in brief, match tells you the new location of b in terms of a
+ANN_parameters <- data.frame(ANN_parameters)
 use_data(ANN_parameters, overwrite = T)
 
 document()

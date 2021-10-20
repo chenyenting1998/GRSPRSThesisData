@@ -10,7 +10,8 @@ add_coarse_taxon(data, match_file = NULL, output = "Phylum")
 \item{data}{A data frame with a column named \code{Taxon}}
 
 \item{match_file}{A data.frame with at least two columns. One of the columns
-must be named \code{Taxon}; the name of the other column is not restricted.}
+must be named \code{Taxon}; the name of the other column is not
+restricted and shall be passed to the \code{output} arguement.}
 
 \item{output}{The name of the output column.}
 }

@@ -11,7 +11,7 @@ An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) w
 coarse_taxa
 }
 \description{
-This data documents the repective phylum and groupings for the sake of concise graphs
+This data documents the respective phylum and groupings for the sake of concise graphs
 
 \itemize{
 \item \code{Taxon} Taxa in the recorded form.
