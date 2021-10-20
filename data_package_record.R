@@ -1,5 +1,5 @@
 # do not save this file
-pacman::p_load(usethat,testthat,rmarkdown, roxygen2, knitr, devtools, readxl)
+pacman::p_load(usethat,testthat,rmarkdown, roxygen2, knitr, devtools, readxl, dplyr)
 
 has_devel()
 
@@ -30,14 +30,22 @@ use_data(conversion_factors, overwrite = T)
 ANN_parameters <- read_xlsx("xlsx/BenthicPB_import.xlsx", sheet = 2)
 # View(ANN_parameters)
 mgwm <- conversion_factors[conversion_factors$Conversion_factors == "J / mgWM", c("Taxon", "Mean")]
-mgc <- conversion_factors[conversion_factors$Conversion_factors == "J / mgC", c("Taxon", "Mean")]
+colnames(mgwm)[2] <- "ConFac_j2mgwm"
 
-ANN_parameters$ConFac_j2mgwm <- mgwm[match(ANN_parameters$Taxon, mgwm$Taxon), "Mean"]
-ANN_parameters$ConFac_j2mgc  <- mgc[match(ANN_parameters$Taxon, mgc$Taxon), "Mean"]
+mgc <- conversion_factors[conversion_factors$Conversion_factors == "J / mgC", c("Taxon", "Mean")]
+colnames(mgc)[2] <- "ConFac_j2mgc"
+
+ANN_parameters <-
+  ANN_parameters %>%
+  select(-ConFac_j2mgwm , -ConFac_j2mgc ) %>%
+  left_join(mgwm, by = "Taxon") %>%
+  relocate(ConFac_j2mgwm, .after = Taxon) %>%
+  left_join(mgc, by = "Taxon") %>%
+  relocate(ConFac_j2mgc, .after = ConFac_j2mgwm)
+
 # match is confusing as fuck
 # let match(a, b)
 # in brief, match tells you the new location of b in terms of a
-ANN_parameters <- data.frame(ANN_parameters)
 use_data(ANN_parameters, overwrite = T)
 
 document()
