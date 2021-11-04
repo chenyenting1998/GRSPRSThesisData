@@ -55,12 +55,12 @@ assign_method <- function(data, method_file = NULL) {
   result_simple <-
     data %>%
     filter(Taxon %in% simple$Taxon) %>%
-    left_join(simple)
+    left_join(simple, by = "Taxon")
 
   result_exceptional <-
     data %>%
     filter(Taxon %in% exceptional$Taxon) %>%
-    left_join(exceptional)
+    left_join(exceptional, by = "Taxon")
 
   # assign conversion factors for organisms that uses LWR
   output <- full_join(result_exceptional, result_simple)
