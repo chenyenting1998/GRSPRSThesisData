@@ -47,11 +47,11 @@ assign_method <- function(data, method_file = NULL) {
     stop("method file is neither NULL or an object")
   }
 
-  # separate simple cases and exceptional cases
+  # separate method file into simple and exceptional cases
   simple <- method_file[is.na(method_file$Note), ] %>% select(Taxon, Method, C)
   exceptional <- method_file[!is.na(method_file$Note), ] %>% select(Taxon, Note, Method, C)
 
-  # merging data
+  # merging data with method files
   result_simple <-
     data %>%
     filter(Taxon %in% simple$Taxon) %>%
@@ -60,7 +60,7 @@ assign_method <- function(data, method_file = NULL) {
   result_exceptional <-
     data %>%
     filter(Taxon %in% exceptional$Taxon) %>%
-    left_join(exceptional, by = "Taxon")
+    left_join(exceptional, by = c("Taxon", "Note"))
 
   # assign conversion factors for organisms that uses LWR
   output <- full_join(result_exceptional, result_simple)
