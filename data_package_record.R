@@ -1,5 +1,6 @@
 # do not rerun this file
-pacman::p_load(usethat,testthat,rmarkdown, roxygen2, knitr, devtools, readxl, dplyr)
+pacman::p_load(usethat,testthat,rmarkdown, roxygen2, knitr,
+               devtools, readxl, dplyr)
 
 has_devel()
 
@@ -51,14 +52,13 @@ use_data(ANN_parameters, overwrite = T)
 
 # # oxygen consumptoin ----------------------------------------------------
 
-
 GRS_TOU <- # mmol/m2/day
   read_xlsx("xlsx/GPSC_incubation_2021.08.11.xlsx", sheet = 2) %>%
   filter(Cruise %in% c("OR1_1242", "OR1_1219", "LGD_2006")) %>% # subset cruises
   filter(! Station %in% c("GS1", "GC1")) %>%
   mutate(TOU =  abs(In_situ_DO_flux)) %>%
-  group_by(Cruise, Station, Depth) %>%
-  summarise(TOU = mean(TOU))
+  group_by(Cruise, Station) %>%
+  summarise(Depth = mean(Depth), TOU = mean(TOU))
 
 GRS_DOU <- # nmol cm-2 s-1
   read.csv("xlsx/GPSC_DOU.csv") %>%
@@ -88,7 +88,7 @@ OU <-
 env <- env[-7] %>% left_join(OU, by = c("Cruise", "Station"))
 
 use_data(env, overwrite = T)
-use_data_raw(env)
+use_data_raw("env")
 
 # final testing -----------------------------------------------------------
 document()
