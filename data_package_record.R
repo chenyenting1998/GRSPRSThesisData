@@ -85,7 +85,9 @@ OU <-
   relocate(DOU, .before = BOU) %>%
   relocate(OPD, .after = BOU)
 
-env <- env[-7] %>% left_join(OU, by = c("Cruise", "Station"))
+
+colnames(env)
+env <- env[1:25] %>% left_join(OU, by = c("Cruise", "Station"))
 
 use_data(env, overwrite = T)
 use_data_raw("env")
