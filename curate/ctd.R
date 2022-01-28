@@ -48,7 +48,11 @@ ctd <-
   mutate(Temperature =
            if_else(!Cruise %in% "OR3_2077", (temperature_T1 + temperature_T2) / 2, temperature_T1),
          Salinity =
-           if_else(!Cruise %in% "OR3_2077", (salinity_T1C1 + salinity_T2C2) / 2, salinity_T1C1))
+           if_else(!Cruise %in% "OR3_2077", (salinity_T1C1 + salinity_T2C2) / 2, salinity_T1C1),
+         Theta =
+           if_else(!Cruise %in% "OR3_2077", (density_T1C1...11 + density_T2C2...12) / 2, density_T1C1...11),
+         Density =
+           if_else(!Cruise %in% "OR3_2077", (density_T1C1...13 + density_T2C2...14) / 2, density_T1C1...13))
 
 # remove none shelf stations
 ctd <-
@@ -60,6 +64,7 @@ ctd <-
   ctd %>%
   select(Cruise, Station, date, Latitude, Longitude, # date & location
          pressure, Temperature, Salinity,  # CTD
+         Density, Theta, # density
          Oxygen, fluorometer, transmissometer, Beam_Attn) # others
 
 # add location
@@ -68,13 +73,14 @@ ctd <- relocate(ctd, Location, .before = Station)
 
 # write ctd.xlsx
 ctd_profile <- ctd
-use_data(ctd_profile, overwrite = T)
+usethis::use_data(ctd_profile, overwrite = T)
 
 # extract bottom water characteristics -----------------------------
 
 ctd_bw <-
   ctd %>%
   group_by(Cruise, Location, Station) %>%
+  select(-Density, - Theta) %>%
   filter(pressure == max(pressure))
 
 # prevent excel overreacting to date information
