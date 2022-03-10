@@ -51,7 +51,7 @@ macro_size <-
 
 # write data --------------------------------------------------------------
 LGD_2006 <- macro_size
-LGD_2006$Location <- "PRS"
+LGD_2006$Region <- "PRS"
 
-size_LGD_2006 <- LGD_2006[, c("Cruise", "Habitat", "Location", "Station","Deployment", "Tube", "Section", "Taxon","Family", "Genus", "Condition", "L","W", "a", "b", "Size","Note", "Type", "C", "WM")]
+size_LGD_2006 <- LGD_2006[, c("Cruise", "Habitat", "Region", "Station","Deployment", "Tube", "Section", "Taxon","Family", "Genus", "Condition", "L","W", "a", "b", "Size","Note", "Type", "C", "WM")]
 use_data(size_LGD_2006, overwrite = T)

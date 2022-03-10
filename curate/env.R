@@ -22,16 +22,16 @@ env <-
   filter(Station %in% sed$Station) %>%
   full_join(sed, by = c("Cruise", "Station"))
 
-# add location
-env$Location <-
+# add Region
+env$Region <-
   ifelse(test = env$Station %in% c("S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8", "GC1", "GS1"),
          "GRS",
          "PRS")
 
-# relocate `Location`
+# relocate `Region`
 env <-
   env %>%
-  relocate(Location, .after = Cruise)
+  relocate(Region, .after = Cruise)
 
 # remove deep sea stations
 # second thought : no need to do that

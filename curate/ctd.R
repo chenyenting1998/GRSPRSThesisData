@@ -8,7 +8,7 @@
 # I first take the mean of temperature and salinity replicate measurements (if replicates were
 # available);
 # I then remove the stations that are irrelevant to my analysis;
-# I also added a `Location` column to indicate the differences between the two shelf sites.
+# I also added a `Region` column to indicate the differences between the two shelf sites.
 # The finalized `ctd.xlsx` file were used to plot the characteristics of the whole water column.
 #
 # In addition, bottom water characteristics were extracted into a separate file `CTD_bw.xlsx`
@@ -18,6 +18,7 @@
 # library
 pacman::p_load(readxl,
                writexl,
+               lubridate,
                dplyr,
                tidyr,
                usethat,
@@ -62,14 +63,14 @@ ctd <-
 # selecting columns
 ctd <-
   ctd %>%
-  select(Cruise, Station, date, Latitude, Longitude, # date & location
+  select(Cruise, Station, date, Latitude, Longitude, # date & Region
          pressure, Temperature, Salinity,  # CTD
          Density, Theta, # density
          Oxygen, fluorometer, transmissometer, Beam_Attn) # others
 
-# add location
-ctd$Location <- if_else(ctd$Station %in% c(paste("S", 1:8,sep= ""), "GS1", "GC1"), "GRS", "PRS")
-ctd <- relocate(ctd, Location, .before = Station)
+# add Region
+ctd$Region <- if_else(ctd$Station %in% c(paste("S", 1:8,sep= ""), "GS1", "GC1"), "GRS", "PRS")
+ctd <- relocate(ctd, Region, .before = Station)
 
 # write ctd.xlsx
 ctd_profile <- ctd
@@ -79,7 +80,7 @@ usethis::use_data(ctd_profile, overwrite = T)
 
 ctd_bw <-
   ctd %>%
-  group_by(Cruise, Location, Station) %>%
+  group_by(Cruise, Region, Station) %>%
   select(-Density, - Theta) %>%
   filter(pressure == max(pressure))
 

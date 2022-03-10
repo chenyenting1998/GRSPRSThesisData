@@ -6,7 +6,7 @@
 #'   \itemize{
 #'      \item{\code{Cruise}} The cruise during sampling.
 #'      \item{\code{Habitat}} Habitat type (Shelf, slope, canyon)
-#'      \item{\code{Location}} Geographic region; Pearl river-shelf (PRS) and Gaoping river-shelf {GRS}
+#'      \item{\code{Region}} Geographic region; Pearl river-shelf (PRS) and Gaoping river-shelf {GRS}
 #'      \item{\code{Station}} Sampling station.
 #'      \item{\code{Deployment}} Number of deployment.
 #'      \item{\code{Tube}} Order of tubes.

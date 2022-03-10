@@ -49,7 +49,7 @@ macro_size <-
 
 # write: OR1_1242_macrofauna_size
 OR1_1242<- macro_size
-OR1_1242$Location <- "GRS"
-size_OR1_1242 <- OR1_1242[, c("Cruise", "Habitat", "Location", "Station","Deployment", "Tube", "Section", "Taxon","Family", "Genus", "Condition", "L","W", "a", "b", "Size","Note", "Type", "C", "WM")]
+OR1_1242$Region <- "GRS"
+size_OR1_1242 <- OR1_1242[, c("Cruise", "Habitat", "Region", "Station","Deployment", "Tube", "Section", "Taxon","Family", "Genus", "Condition", "L","W", "a", "b", "Size","Note", "Type", "C", "WM")]
 
 use_data(size_OR1_1242, overwrite = T)
